@@ -7,7 +7,8 @@ import {  Link } from "react-router-dom";
 // import Routes from './Routes'
 import Home from '../pages/Home'
 import Reports from '../pages/Reports'
-
+import Products from '../pages/Products'
+import Team from '../pages/Team'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export default class SideBar extends Component {
@@ -26,8 +27,8 @@ export default class SideBar extends Component {
                   </div>
                 
           <div className='container'>
-          <div class="row">
-            <div class="col-lg-3 mr-2 bg-warning justify-content-center" style={{borderRadius:'8px'}} >
+          <div className="row">
+            <div className="col-lg-3 mr-2 bg-warning justify-content-center" style={{borderRadius:'8px'}} >
             <Navbar expand="lg justify-content-center">
             <Navbar.Toggle className='text-white' style={{backgroundColor:'white'}} aria-controls="basic-navbar-nav " />
             <Navbar.Collapse id="basic-navbar-nav  ">
@@ -48,10 +49,12 @@ export default class SideBar extends Component {
             </Navbar.Collapse>
           </Navbar>
             </div>
-                  <div class="col-lg-8 bg-primary text-white" style={{height:'90vh',borderRadius:'8px',textAlign:'center'}}>
+                  <div className="col-lg-8 bg-primary text-white" style={{height:'90vh',borderRadius:'8px',textAlign:'center'}}>
                     
                             <Route exact path='/home' component={Home}/>
                             <Route exact path='/reports' component={Reports}/>
+                            <Route exact path='/products' component={Products}/>
+                            <Route exact path='/team' component={Team}/>
                             
                   </div>
                 </div>

@@ -75,3 +75,14 @@
   margin: 15px;
   opacity: 0.7;
 }
+
+.thumb-img{
+  display: flex;
+}
+
+.thumb-img>div{
+  display: flex;
+  align-items: center;
+  width: 100% ;
+  max-width: 50% ;
+}
