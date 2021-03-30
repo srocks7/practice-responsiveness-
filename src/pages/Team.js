@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { MDBTable, MDBTableBody, MDBTableHead ,MDBInput} from 'mdbreact';
 export default class Team extends Component {
     
         state = {
@@ -9,19 +10,49 @@ export default class Team extends Component {
     };
     async  componentDidMount() {
      
-         const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
+         const response = await axios.get('https://jsonplaceholder.typicode.com/todos/');
         // await new Promise(x=> setTimeout(x,1000))
-           this.setState({t:response.data,loading:'true'})
+       
+          this.setState({t:response.data,loading:'true'})
         
       }
     render() {
         console.log(this.state.t)
+        const data = {
+          columns: [
+            {
+              label: 'UserId',
+              field: 'userId',
+              sort: 'asc',
+           
+            },
+            {
+              label: 'Id',
+              field: 'id',
+              sort: 'asc',
+             
+            },
+            {
+              label: 'Title',
+              field: 'title',
+              sort: 'asc',
+           
+            },
+           
+            {
+              label: 'Check',
+              field: <MDBInput type="checkbox" />,
+              sort: 'asc',
+             
+            }
+          ]
+        }
         return (
             <div>
                 <h1>Team</h1>
                 <div className='container'>
                   <div className='row'>
-                  <div className='col' style={{overflowY:'scroll' ,height:'70vh'}}>
+                  {/* <div className='col' style={{overflowY:'scroll' ,height:'70vh'}}>
                  
                       {this.state.loading==='true' ? (
                            <ul className="list-group">
@@ -38,13 +69,25 @@ export default class Team extends Component {
                         ))}
                           </ul>
                       ) : (
-                        <div class="spinner-border" role="status">
-                        <span class="sr-only">Loading...</span>
+                        <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
                       </div>
                       )}
                    
                    
-                    </div>
+                    </div> */}
+                    <div className='col bg-light'  style={{overflowY:'scroll' ,height:'70vh'}} >
+                   {this.state.loading==='true'? ( 
+                   <MDBTable responsive hover autoWidth bordered>
+                    <MDBTableHead columns={data.columns} />
+                    <MDBTableBody rows={ this.state.t} />
+                  </MDBTable>): 
+                  ( <div className="spinner-border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>)
+                  } 
+                  
+                   </div>
                   </div>
                     
                 </div>

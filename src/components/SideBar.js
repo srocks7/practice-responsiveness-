@@ -10,6 +10,7 @@ import Reports from '../pages/Reports'
 import Products from '../pages/Products'
 import Team from '../pages/Team'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Footer from './Footer';
 
 export default class SideBar extends Component {
     render() {
@@ -62,6 +63,7 @@ export default class SideBar extends Component {
                   </div>
             </Switch>
                 </Router>
+                <Footer/>
             </div>
         )
     }
