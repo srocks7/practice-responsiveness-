@@ -29,6 +29,11 @@
 } */
 .nav-link.active, .nav-link:focus{
   background-color: aqua;
+ 
+}
+.nav-link {
+  /* background-color: aqua; */
+  
 }
 
 .abc a{

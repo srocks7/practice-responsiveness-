@@ -11,8 +11,25 @@ import Products from '../pages/Products'
 import Team from '../pages/Team'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from './Footer';
+import Messages from '../pages/Messages';
+import axios from 'axios'
+import Support from '../pages/Support';
 
 export default class SideBar extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+        t:[]
+    }
+}
+async  componentDidMount() {
+     
+  const response = await axios.get('https://jsonplaceholder.typicode.com/todos/');
+ // await new Promise(x=> setTimeout(x,1000))
+
+   this.setState({t:response.data,loading:'true'})
+ 
+}
     render() {
         return (
             <div>
@@ -56,6 +73,20 @@ export default class SideBar extends Component {
                             <Route exact path='/reports' component={Reports}/>
                             <Route exact path='/products' component={Products}/>
                             <Route exact path='/team' component={Team}/>
+                            
+                            <Route exact path='/messages'>
+                            <div style={{overflowY:'scroll', height:'85vh'}}>
+                              
+                              {this.state.t.map((item)=>(
+                                <Messages
+                                  id={item.id}
+                                  title={item.title}                          
+                                />
+                              ))}
+                                 </div>
+                            </Route>
+                            <Route exact path='/support' component={Support}/>
+                            
                             
                   </div>
                 </div>
