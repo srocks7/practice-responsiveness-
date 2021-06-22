@@ -76,20 +76,20 @@ async  componentDidMount() {
                             
                             <Route exact path='/messages'>
                             <div style={{overflowX:'scroll', height:'85vh',display:'flex'}}>
-                             
-                                    {this.state.t.map((item)=>(
-                                      <div className="container">
+                            <div className="container">
                                          <div className="row">
-                                         <div className='col-lg-4'>
+                                    {this.state.t.map((item)=>(
+                                     
+                                         <div className='col-lg-4 col-md-4'>
                                           <Messages
                                           id={item.id}
                                           title={item.title}                          
                                           />
                                         </div>
-                                        </div>
-                                      </div>
+                                      
                                   ))}
-                              
+                                </div>
+                                      </div>
                              
                                  </div>
                             </Route>
