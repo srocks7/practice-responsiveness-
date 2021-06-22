@@ -75,14 +75,22 @@ async  componentDidMount() {
                             <Route exact path='/team' component={Team}/>
                             
                             <Route exact path='/messages'>
-                            <div style={{overflowY:'scroll', height:'85vh'}}>
+                            <div style={{overflowX:'scroll', height:'85vh',display:'flex'}}>
+                             
+                                    {this.state.t.map((item)=>(
+                                      <div className="container">
+                                         <div className="row">
+                                         <div className='col-lg-4'>
+                                          <Messages
+                                          id={item.id}
+                                          title={item.title}                          
+                                          />
+                                        </div>
+                                        </div>
+                                      </div>
+                                  ))}
                               
-                              {this.state.t.map((item)=>(
-                                <Messages
-                                  id={item.id}
-                                  title={item.title}                          
-                                />
-                              ))}
+                             
                                  </div>
                             </Route>
                             <Route exact path='/support' component={Support}/>
