@@ -7,12 +7,12 @@ import { storage,fire } from "../components/Fire";
 export default function Support() {
 
 
-//     const [file, setFile] = useState(null);
-//   const [url, setURL] = useState("");
+    const [file, setFile] = useState(null);
+  const [url, setURL] = useState("");
 
-//   function handleChange(e) {
-//     setFile(e.target.files[0]);
-//   }
+  function handleChange(e) {
+    setFile(e.target.files[0]);
+  }
 
 //   function handleUpload(e) {
 //     e.preventDefault();
@@ -28,44 +28,43 @@ export default function Support() {
 //         });
 //     });
 //   }
-const [url, setURL] = useState("");
+// const [url, setURL] = useState("");
 
-const [data, setData] = useState([
-    {
-        id: 1,
-        categoryName: "Apple",
-        categoryDescription: "Baran",
-        imageURL: "https://firebasestorage.googleapis.com/v0/b/portfolio-feedback.appspot.com/o/image%2FSolarPanel.png?alt=media&token=1461091a-0dd4-42bd-88f3-53d892e6f1bd",
+// const [data, setData] = useState([
+//     {
+//         id: 1,
+//         categoryName: "Apple",
+//         categoryDescription: "Baran",
+//         imageURL: "https://firebasestorage.googleapis.com/v0/b/portfolio-feedback.appspot.com/o/image%2FSolarPanel.png?alt=media&token=1461091a-0dd4-42bd-88f3-53d892e6f1bd",
       
-    },
+//     },
    
-  ]);
-const [files, setFiles] = useState([])
+//   ]);
+// const [files, setFiles] = useState([])
 
-function onFileChange (e)  {
- for (let i = 0; i < e.target.files.length; i++) {
-      const newFile = e.target.files[i];
-      newFile["id"] = Math.random();
-   // add an "id" property to each File object
-      setFiles(prevState => [...prevState, newFile]);
-    }
-  }
+// function onFileChange (e)  {
+//  for (let i = 0; i < e.target.files.length; i++) {
+//       const newFile = e.target.files[i];
+//       newFile["id"] = Math.random();
+//    // add an "id" property to each File object
+//       setFiles(prevState => [...prevState, newFile]);
+//     }
+//   }
 
   function onUploadSubmission (e) {
     e.preventDefault(); // prevent page refreshing
    const promises = [];
-   files.forEach(file => {
     const uploadTask = 
      firebase.storage().ref().child(`/image/${file.name}`).put(file);
        promises.push(uploadTask);
        uploadTask.on(
           firebase.storage.TaskEvent.STATE_CHANGED,
           snapshot => {
-           const progress = 
-             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              if (snapshot.state === firebase.storage.TaskState.RUNNING) {
-               console.log(`Progress: ${progress}%`);
-              }
+          //  const progress = 
+          //    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          //     if (snapshot.state === firebase.storage.TaskState.RUNNING) {
+          //      console.log(`Progress: ${progress}%`);
+          //     }
             },
             error => console.log(error.code),
             async () => {
@@ -74,11 +73,12 @@ function onFileChange (e)  {
                .then((url) => {
                         //   setFile(null);
                           setURL(url);
+                          console.log(url);
 
                         });
              }
             );
-          });
+     
       Promise.all(promises)
        .then(() => alert('All files uploaded'))
        .catch(err => console.log(err.code));
@@ -100,7 +100,6 @@ function onFileChange (e)  {
 //      })
          
 //   }, [])
-  console.log(url);
 
     return (
         
@@ -108,7 +107,7 @@ function onFileChange (e)  {
             <h1>Support</h1>
             <div className='row'>
                 <div className='col'>
-                <MaterialTable
+                {/* <MaterialTable
                     title="Category"
                     columns={[
                         { title: "Id", field: "id" },
@@ -172,12 +171,12 @@ function onFileChange (e)  {
                                 }),
                             }}
   
-    />
-      {/* <form onSubmit={handleUpload}>
+    /> */}
+      <form onSubmit={onUploadSubmission}>
         <input type="file" onChange={handleChange} />
         <button disabled={!file}>upload to firebase</button>
       </form>
-      <img src={url} alt="" /> */}
+      <img src={url} alt="" />
 
 
 {/* <form>
